@@ -2,7 +2,7 @@
   Der Programmcode, der zur Loesung der Aufgabe 1.2 gehoert liegt in
   der Datei [[file:uebung1_2.py][uebung1_2.py]].
 
-  Die Methode src_python{loesung(gamma,b)} stellt ist die geforderte
+  Die Methode =loesung(gamma,b)= stellt ist die geforderte
   Methode.
 
 * Aufgabe 1.3
@@ -14,6 +14,6 @@
 
   Es gibt auch eine Methode, mit der die gefundenen Ergebnisse optisch
   ansprechend in einen Graphen geplottet werden koennen.  Diese
-  Methode heisst src_python{plot_uebung1_3()} und liegt in der Datei
+  Methode heisst =plot_uebung1_3()= und liegt in der Datei
   [[file:plotting.py][plotting.py]].  Zum ausfuehren der Funktion wird allerdings die
   Bibliothek [[http://matplotlib.org/][matplotlib]] benoetigt.
