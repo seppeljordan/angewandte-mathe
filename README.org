@@ -1,1 +1,4 @@
 #+TITLE: Loesungen der uebungsaufgaben in MafI
+
+* Struktur
+  Die Uebungen liegen in den entsprechenden Unterordnern.
