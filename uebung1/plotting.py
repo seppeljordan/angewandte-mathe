@@ -16,5 +16,8 @@ def plot_uebung1_3():
     # skaliere die axen logrithmisch
     plt.yscale('log')
     plt.xscale('log')
+    # beschrifte die achsen
+    plt.ylabel('Fehler')
+    plt.xlabel('h')
     # zeige den graphen
     plt.show()
