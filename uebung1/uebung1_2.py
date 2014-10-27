@@ -157,5 +157,8 @@ def einheit(n):
 
 
 def printMatrix(m):
-    for i in m:
-        print(i)
+    """Gebe eine Matrix auf stdout aus"""
+    for l in m:
+        for e in l:
+            print(e,end='\t')
+        print('')
