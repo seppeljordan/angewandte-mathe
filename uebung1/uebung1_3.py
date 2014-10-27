@@ -19,6 +19,7 @@ def zentralDiff(f, x, h):
 def fehlerDiff(f, df, x, h):
     return abs(zentralDiff(f, x, h) - df(x))
 
-for h in hs:
-    print("Fehler fuer h = 10**%i" % log(h,10),end="\t")
-    print(fehlerDiff(f,df,1,h))
+if __name__ == '__main__':
+    for h in hs:
+        print("Fehler fuer h = 10**%i" % log(h,10),end="\t")
+        print(fehlerDiff(f,df,1,h))
