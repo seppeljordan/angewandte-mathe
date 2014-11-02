@@ -11,6 +11,21 @@ A = [ [ 4,-1, 0,-1, 0, 0, 0, 0, 0],
       [ 0, 0, 0, 0, 0,-1, 0,-1, 4]
   ]
 
+
+def diagonalDominant(M):
+    """ueberprueft, ob eine quadratische Matrix diagonal dominant ist"""
+    if not isSquare(M):
+        raise Exception("Matrix M ist nicht quadratisch")
+    for i in range(0,len(M)):
+        summe = 0
+        for j in range(0,len(M)):
+            if i != j:
+                summe += abs(M[i][j])
+        if summe >= M[i][i]:
+            return False
+    return True                
+
+
 def jacobi(M, b, tol=10**(-5)):
     """Diese Methode loest das Gleichungssystem, dass durch die Matrix M
     und den Vektor b beschrieben wird, mit Mx = b.

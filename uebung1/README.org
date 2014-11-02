@@ -1,9 +1,27 @@
 * Aufgabe 1.2
   Der Programmcode, der zur Loesung der Aufgabe 1.2 gehoert liegt in
-  der Datei [[file:uebung1_2.py][uebung1_2.py]].
+  der Datei [[file:uebung1_2.py][=uebung1_2.py=]].  Zum Ausfuehren Codes wird ein Python 3
+  Interpreter benoetigt.
 
   Die Methode =loesung(gamma,b)= stellt ist die geforderte
-  Methode.
+  Methode dar.
+
+  Um die Anzahl der benoetigten Schritte in Abhaengigkeit von Gamma zu
+  analysieren, haben wir eine Methode geschrieben, die die Anzahl der
+  Schritte in Anhaengigkeit von Gamma in ein Diagram zeichnet.  Diese
+  Methode heisst =plot_uebung1_2()= und ist im Modul [[file:plotting.py][=plotting.py=]] zu
+  finden.  Um die Methode auszufuehren, wird die Bibliothek [[http://matplotlib.org/][matplotlib]]
+  benoetigt.  Die von der Methode ausgegebene Graphik ist in der
+  folgenden [[fig:gamma-schritte][Abbildung]] zu sehen.  Das Verhalten der Methode =loesung=
+  ist dadurch zu erklaeren, dass durch ein Anwachsen von Gamma die
+  Kontraktivitaet der Abbildung steigt, die die individuellen Schritte
+  des Jacobiverfahrens in einander ueberfuehrt.  Eine staerkere
+  Kontraktivitaet bedeutet, dass das Jacobiverfahren "schneller"
+  konvergiert.
+
+  #+caption: Anzahl der Rechenschritte in Abhaengigkeit von Gamma
+  #+name: fig:gamma-schritte
+  [[file:uebung1_2.png]]
 
 * Aufgabe 1.3
   Die programmmatische Loesung der Aufgabe liegt im der Datei

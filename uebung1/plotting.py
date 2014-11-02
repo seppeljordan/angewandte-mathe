@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 
 from uebung1_3 import *
+from uebung1_2 import loesung
 
 def plot_uebung1_3():
     """Plotte die Werte die in der Aufgabe geforderdert sind als Graph"""
@@ -21,3 +22,17 @@ def plot_uebung1_3():
     plt.xlabel('h')
     # zeige den graphen
     plt.show()
+
+def plot_uebung1_2():
+    b = [1 for x in range(0,9)]
+    gammas = [x/2.0 for x in range(2,40)]
+    schritte = []
+    for x in gammas:
+        m,s = loesung(x,b)
+        schritte.append(s)
+    # plotte die anzahl der schritte abhaengig von gamma
+    plt.plot(gammas, schritte, 'o')
+    plt.ylabel('Anzahl der Schritte')
+    plt.xlabel('Gamma')
+    plt.show()
+    
