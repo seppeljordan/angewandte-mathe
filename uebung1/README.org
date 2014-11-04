@@ -1,23 +1,29 @@
+#+title: Loesung Aufgabe 1 - Angewandte Mathematik fuer Informatiker
+#+author: Mark Schatz - 545097, Sebastian Jordan - 538134
+#+email: mark_schatz@web.de, jordanse@hu-berlin.de
+#+latex_header: \usepackage{ngerman}
+
 * Aufgabe 1.2
   Der Programmcode, der zur Loesung der Aufgabe 1.2 gehoert liegt in
   der Datei [[file:uebung1_2.py][=uebung1_2.py=]].  Zum Ausfuehren Codes wird ein Python 3
-  Interpreter benoetigt.
+  Interpreter benoetigt.  Nach dem Starten des Interpreters im selben
+  Ordner, in dem auch das Pythonskript liegt, muss folgender Befehl
+  eingegeben werden um das Modul zu importieren =from uebung1_2 import
+  *=.
 
-  Die Methode =loesung(gamma,b)= stellt ist die geforderte
-  Methode dar.
-
-  Um die Anzahl der benoetigten Schritte in Abhaengigkeit von Gamma zu
-  analysieren, haben wir eine Methode geschrieben, die die Anzahl der
-  Schritte in Anhaengigkeit von Gamma in ein Diagram zeichnet.  Diese
-  Methode heisst =plot_uebung1_2()= und ist im Modul [[file:plotting.py][=plotting.py=]] zu
-  finden.  Um die Methode auszufuehren, wird die Bibliothek [[http://matplotlib.org/][matplotlib]]
-  benoetigt.  Die von der Methode ausgegebene Graphik ist in der
-  folgenden [[fig:gamma-schritte][Abbildung]] zu sehen.  Das Verhalten der Methode =loesung=
-  ist dadurch zu erklaeren, dass durch ein Anwachsen von Gamma die
-  Kontraktivitaet der Abbildung steigt, die die individuellen Schritte
-  des Jacobiverfahrens in einander ueberfuehrt.  Eine staerkere
-  Kontraktivitaet bedeutet, dass das Jacobiverfahren "schneller"
-  konvergiert.
+  Die Methode =loesung(gamma,b)= stellt ist die geforderte Methode
+  dar. Um die Anzahl der benoetigten Schritte in Abhaengigkeit von
+  Gamma zu analysieren, haben wir eine Methode geschrieben, die die
+  Anzahl der Schritte in Anhaengigkeit von Gamma in ein Diagram
+  zeichnet.  Diese Methode heisst =plot_uebung1_2()= und ist im Modul
+  [[file:plotting.py][=plotting.py=]] zu finden.  Um die Methode auszufuehren, wird die
+  Bibliothek [[http://matplotlib.org/][matplotlib]] benoetigt.  Die von der Methode ausgegebene
+  Graphik ist in der folgenden [[fig:gamma-schritte][Abbildung]] zu sehen.  Das Verhalten der
+  Methode =loesung= ist dadurch zu erklaeren, dass durch ein Anwachsen
+  von Gamma die Kontraktivitaet der Abbildung steigt, die die
+  individuellen Schritte des Jacobiverfahrens in einander ueberfuehrt.
+  Eine staerkere Kontraktivitaet bedeutet, dass das Jacobiverfahren
+  "schneller" konvergiert.
 
   #+caption: Anzahl der Rechenschritte in Abhaengigkeit von Gamma
   #+name: fig:gamma-schritte
@@ -28,10 +34,30 @@
   [[file:uebung1_3.py][uebung1_3.py]].
 
   Wenn das Skript mit einem python3-Interpreter aufgerufen wird, dann
-  werden die geforderten Fehler auf die Standardausgabe geschrieben.
+  werden die geforderten Fehler auf die Standardausgabe geschrieben,
+  Syntax: =python3 uebung1_3.py=.
 
   Es gibt auch eine Methode, mit der die gefundenen Ergebnisse optisch
   ansprechend in einen Graphen geplottet werden koennen.  Diese
   Methode heisst =plot_uebung1_3()= und liegt in der Datei
   [[file:plotting.py][plotting.py]].  Zum ausfuehren der Funktion wird allerdings die
   Bibliothek [[http://matplotlib.org/][matplotlib]] benoetigt.
+
+  Die gefundenen Ergebnisse koennen auch in der entsprechenden
+  [[fig:differenz-fehler][Abbildung]] eingesehen werden.
+
+  #+caption: Fehler des Differenzenquotienten in Abhaengigkeit von h
+  #+name: fig:differenz-fehler
+  [[file:uebung1_3.png]]
+
+  Das Phaenomen, dass hier zu beobachten ist, hat die Rundungen, die
+  der Computer bei der Berechnung vornimmt, zur Ursache.  Da wir beim
+  Differenzenquotienten durch =2h= teilen muessen, bedeutet das, dass
+  eventuelle Fehler bei der Berechnung von =h= die Ungenauigkeit des
+  Differenzenquotienten enorm beeinflussen, wenn =h= sehr kleine wird.
+  Deshalb gibt es ein Optimum, dass sich in unserem Fall um die Stelle
+  10e-06 bewegt.
+
+* Kontakt
+  - Mark Schatz :: =mark_schatz@web.de=
+  - Sebastian Jordan :: =jordanse@hu-berlin.de=

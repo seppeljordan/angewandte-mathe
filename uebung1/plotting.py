@@ -1,3 +1,5 @@
+# Mark Schatz - 545097, Sebastian Jordan - 538134
+
 import matplotlib.pyplot as plt
 
 from uebung1_3 import *

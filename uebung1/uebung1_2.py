@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+# Mark Schatz - 545097, Sebastian Jordan - 538134
 
 A = [ [ 4,-1, 0,-1, 0, 0, 0, 0, 0],
       [-1, 4,-1, 0,-1, 0, 0, 0, 0],

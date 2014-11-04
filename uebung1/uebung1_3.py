@@ -1,4 +1,5 @@
 #!/usr/bin/python
+# Mark Schatz - 545097, Sebastian Jordan - 538134
 
 from math import sin,cos,tan,log
 
