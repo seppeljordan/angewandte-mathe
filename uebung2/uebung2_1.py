@@ -190,5 +190,8 @@ def schritt(x):
     return matrixAdd( matrixMult(ma,x), mb)
 
 if __name__ == '__main__':
-    plotDifferenz(show=False,save="uebung2_2_kontraktion.png")
-    plotVektorListe(loesung(),show=False,save="uebung2_2.png")
+    plt.figure(1)
+    plotDifferenz(show=False,save="uebung2_1_kontraktion.png")
+
+    plt.figure(2)
+    plotVektorListe(loesung(),show=False,save="uebung2_1.png")

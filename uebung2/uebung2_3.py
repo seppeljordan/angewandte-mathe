@@ -16,7 +16,7 @@ def f(p,x1,x2):
 def inverseJ(v):
     """berechne inverse jacobimatrix fuer gegebenen phi-r-vektor
 
-    v - ist ein vektor [ [phi], [r] ]
+    v - ist ein vektor [ [r], [phi] ]
     """
     r = v[0][0]
     phi = v[1][0]

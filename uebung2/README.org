@@ -37,7 +37,7 @@
 
   #+caption: Schritte 1 bis 10 der Iteration
   #+name: plot_iter
-  [[file:uebung2_2.png]]
+  [[file:uebung2_1.png]]
 
   Im zweiten Teil der Aufgabe ist zu zeigen, dass die Abbildung
   kontraktiv ist, da dies die Vorraussetzung fuer die Gueltigkeit des
@@ -119,11 +119,45 @@
 
    #+name: plot_kontraktion
    #+caption: Der in Aufgabe 2.2.4 geforderte Plot.
-   [[file:uebung2_2_kontraktion.png]]
+   [[file:uebung2_1_kontraktion.png]]
 
    Bei der Betrachtung der in Abbildung [[plot_kontraktion]] geplotteten
    Graphen deutet sich an, das der Logarithmus der Abstaende mit
    steigendem $k$ gegen $\log_{10} 0.9$ konvergiert.
+
+* Aufgabe 2.2
+** Analytische Betrachtung
+*** Nullstellen 
+    \begin{equation}
+    (x^* - 1)^n = 0 \, \Leftrightarrow \, x^* = 1, \, x^* \in \mathbb{R}
+    \end{equation}
+*** Ableitung 
+    \begin{equation}
+    f'_n = n(x-1)^{n-1}
+    \end{equation}
+
+** Newtonverfahren
+   Die Funktion, die das Newtonverfahren implementiert, heisst
+   =newton(n)=.  In Abbildung [[newton-1d]] wird ein Beispielaufruf
+   gezeigt.
+
+   #+name: newton-1d
+   #+caption: Aufruf der newton-Methode mit $n=4$
+   #+begin_src python
+     from uebung2_2 import newton
+     newton(4)
+   #+end_src
+
+** Vergleich mit $(1-\frac{1}{n})$
+   Um die Werte zu vergleichen, haben wir zusammen in ein Diagramm
+   geplottet, siehe Abbildung [[newton-vergleich]].
+
+   #+name: newton-vergleich
+   #+caption: $c_n$ und $(1-\frac{1}{n})$ im Vergleich
+   [[file:uebung2_2_newton_vergleich.png]]
+
+   Es ist leicht zu sehen, dass beide Funktionen einen SEHR aehnlichen
+   Verlauf haben.
 
 * Aufgabe 2.3
 
@@ -241,13 +275,6 @@
    \vect{2.237410}{1.106949}$, wobei hier auf die sechste Kommastelle
    gerundet wurde.
    
-   \begin{align}
-     
-   \end{align}
-
-
-   
-
 * Kontakt
   - Mark Schatz :: =mark_schatz@web.de=
   - Sebastian Jordan :: =jordanse@hu-berlin.de=
