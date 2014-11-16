@@ -1,0 +1,254 @@
+#+title: Loesung Aufgabe 2 - Angewandte Mathematik fuer Informatiker
+#+author: Mark Schatz - 545097, Sebastian Jordan - 538134
+#+email: mark_schatz@web.de, jordanse@hu-berlin.de
+#+latex_header: \usepackage{ngerman}
+#+latex_header: \newcommand{\vect}[2]{\ensuremath{\begin{pmatrix} #1 \\ #2 \end{pmatrix}}}
+#+latex_header: \newcommand{\norm}[1]{\ensuremath{\left\| #1 \right\|}}
+
+* Benoetigte Software
+  Fuer das Ausfuehren des Codes wird folgende Software benoetigt:
+
+  - python3
+  - matplotlib-Bibliothek fuer Python
+
+* Aufgabe 2.1
+  Der Quellcode fuer die Loesung der Aufgabe 2.2 befindet sich in der
+  Datei =uebung2_2.py=.  Nach dem Starten des Pythoninterpreters und
+  dem Laden des Moduls, kann die Methode =loesung()= aufgerufen werden
+  um die in Aufgabe 2.2.1 geforderte Liste zu generieren.  Falls
+  gewuenscht, koennen die Ergebnisse auch in ein Diagram geplottet
+  werden.  Dazu wird der Befehl =plotVektorListe(vecs)= verwendet.  An
+  diesen wird die Liste von Vektoren, die =loesung()= zurueck gibt als
+  einziger Parameter uebergeben.
+  
+  #+caption: Codezusammenfassung fuer Aufgabe 2.2.1
+  #+begin_src python
+    from uebung2_2 import *
+
+    # Ausgabe der Liste
+    loesung()
+
+    #Plotten der Vectoren in der Ebene
+    plotVektorListe(loesung())
+  #+end_src
+
+  In Abbildung [[plot_iter]] ist das Ergebnis noch einmal zur Uebersicht
+  visualisiert.
+
+  #+caption: Schritte 1 bis 10 der Iteration
+  #+name: plot_iter
+  [[file:uebung2_2.png]]
+
+  Im zweiten Teil der Aufgabe ist zu zeigen, dass die Abbildung
+  kontraktiv ist, da dies die Vorraussetzung fuer die Gueltigkeit des
+  Banachschen Fixpunktsatzes ist.
+  
+** Banachscher Fixpunktsatz
+  Sei $G$ die in der Aufgabenstellung definierte Abbildung und die
+  Norm $\| \cdot \|$ die Maximumsnorm.  Dann ist zu seigen, dass
+  \begin{equation}
+    \exists L < 1: \, \forall x,y \in \mathbb{R}^2:\, 
+    \|G(x) - G(y)\| \leq L \cdot \|x - y\|
+  \end{equation}
+
+*** Beweis
+   Betrachten wir zu aller erst mal die Abbbildung $G$.
+   \begin{align}
+     x^{k+1} &= \begin{pmatrix} 0.2 & -0.7 \\ 0.9 & 0 \end{pmatrix} 
+     \cdot x^k + \vect{1.3}{0.3} & \Rightarrow \\
+     G(x) - G(y) &= \begin{pmatrix} 0.2 & -0.7 \\ 0.9 & 0 \end{pmatrix}
+     \cdot \left( x - y \right) & \\
+     &= \vect{0.2 \, (x_1 - y_1) - 0.7 \, (x_2 - y_2)}
+     {0.9 \, (x_1 - y_1)} & \Rightarrow \\
+     \| G(x) - G(y) \| &= \left\| \vect{0.2 \, (x_1 - y_1) - 0.7 \, (x_2 - y_2)}
+                                  {0.9 \, (x_1 - y_1)} \right\| &
+   \end{align}
+   Sei ausserdem $z = x - y$.
+   \begin{align}
+     \left\| \vect{0.2 \, (x_1 - y_1) - 0.7 \, (x_2 - y_2)}
+                  {0.9 \, (x_1 - y_1)} \right\| & \leq
+     \left\| \vect{0.9 \, z_2}{0.9 \, z_1} & \\
+     & < \| z \|&
+   \end{align}
+   
+   Daraus folgt die Behauptung.
+
+*** Gueltigkeit fuer die 1- und die Summennorm
+   Die Aussage gilt auch fuer die 1- und die Summennorm, da in einem
+   normierten Raum alle Folgen die bezueglich einer Norm konvergieren
+   auch gegen jede andere Norm konvergieren.
+
+** Fixpunkt der Abbildung
+   Fuer einen Fixpunkt einer Abbildung muss gelten
+
+   \begin{equation}
+     G(x) = x
+   \end{equation}
+
+   Das heisst in unserem Fall gilt:
+   
+   \begin{align}
+     \vect{x_1}{x_2} &= \begin{pmatrix} 0.2 & -0.7 \\ 0.9 & 0 \end{pmatrix}
+       \cdot \vect{x_1}{x_2} + \vect{1.3}{0.3} & \Rightarrow \\
+     x_1 &= 0.2 x_1 - 0.7 x_2 + 1.3 \quad \land &  \\
+     x_2 &= 0.9 x_1 + 0.3 & \Rightarrow \\
+     x_1 &= 0.2 x_1 - 0.7 \left( 0.9 x_1 + 0.3 \right) + 1.3 & \Rightarrow \\
+     0.8 x_1 &= 1.3 - 0.63 x_1 - 0.21 & \Rightarrow \\
+     1.43 x_1 &= 1.09 & \Rightarrow \\
+     x_1 &= \frac{109}{143} & \Rightarrow \\
+     x_2 &= 0.9 \frac{109}{143} + 0.3 = \frac{141}{143}
+   \end{align}
+
+   Daraus folgt, dass der Fixpunkt $x^* = \vect{109 /143}{141 / 143}$ ist.
+
+** Kontraktionsfaktor
+
+   Der Kontraktionsfaktor, der in Teilaufgabe 1 ermittelt wurde ist $L
+   = 0.9$ .  In Abbildung [[plot_kontraktion]] sind sowohl $L$ als auch
+   der Maxnormabstand zwischen aufeinander folgenden Elementen der
+   Folge dargestellt.  Diese Graphik wird auch von der Funktion
+   =plotDifferenz()= im module =uebung2_1.py= erzeugt, siehe auch
+   Abbildung [[code_plot]].
+
+   #+caption: Befehle zum erzeugen vom geforderten Plot
+   #+name: code_plot
+   #+begin_src python
+     from uebung2_2 import plotDifferenz
+     plotDifferenz()
+   #+end_src
+
+   #+name: plot_kontraktion
+   #+caption: Der in Aufgabe 2.2.4 geforderte Plot.
+   [[file:uebung2_2_kontraktion.png]]
+
+   Bei der Betrachtung der in Abbildung [[plot_kontraktion]] geplotteten
+   Graphen deutet sich an, das der Logarithmus der Abstaende mit
+   steigendem $k$ gegen $\log_{10} 0.9$ konvergiert.
+
+* Aufgabe 2.3
+
+** Jacobimatrix
+   Die folgende Funktion $F(r,\varphi)$ ist die Funktion, deren
+   Nullstelle genau die Polarkoordinaten von $x = \vect{x_1}{x_2}$
+   beschreibt.
+   \begin{equation}
+     F(r,\varphi) = \vect{ r\,\cos(\varphi) - x_1}{r\,\sin(\varphi) - x_2}
+   \end{equation}
+
+   Die Jacobimatrix fuer die Funktion ist
+
+   \begin{equation}
+     J = \begin{pmatrix} \cos(\varphi) & -r \sin(\varphi) \\
+                         \sin(\varphi) & r \cos(\varphi)
+         \end{pmatrix}
+   \end{equation}
+ 
+   Die inverse Jacobimatrix ergibt sich dann zu
+   \begin{align}
+     J^{-1}&= \frac
+              {\begin{pmatrix} r\cos(\varphi) & -r\sin(\varphi) \\
+                               -\sin(\varphi) & \cos(\varphi)
+               \end{pmatrix}}
+              {r\cos^2(\varphi) + r\sin^2(\varphi)} \\
+     &= \begin{pmatrix}
+          \cos(\varphi) & \sin(\varphi) \\
+          \frac{-\sin(\varphi)}{r} & \frac{\cos(\varphi)}{r}
+        \end{pmatrix}
+   \end{align}
+
+** Analytische Betrachtung
+   Um Polarkoordinaten auf analytischem Wege zu erhalten setzen wir
+   $x=\vect{1}{2}$ in die gegebenen Gleichungen ein und loesen das
+   Gleichungssystem.
+
+   \begin{align}
+     1 &= r^* \cos(\varphi^*) & \\
+     2 &= r^* \sin(\varphi^*) & \Rightarrow \\ 
+     \frac{1}{\cos(\varphi^*)} &= \frac{2}{\sin(\varphi^*)} & \Rightarrow \\
+     \tan(\varphi^*) &= 2 &\Rightarrow \\
+     \varphi^* &= \arctan(2) \approx 1.1071487
+   \end{align}
+
+   Ausserdem koennen wir $r^*$ mithilfe des Satz von Pythagoras
+   errechnen.
+
+   \begin{equation}
+     r^* = \sqrt{x_1^2 + x_2^2} = \sqrt{5} \approx 2.236058
+   \end{equation}
+
+** Newtonverfahren
+   Die geforderte Methode, die Polarkoordinaten mithilfe des
+   Newtonverfahrens aproximiert heisst =polar(x1,x2)=.  Die Funktion
+   ueberprueft als Abbruchkriterium, ob die Maxnorm der Differenz des
+   $k$-ten und des $(k+1)$-ten Ergebnis kleiner als $\epsilon =
+   0.000001$ ist.
+
+   Ein Aufruf der Funktion mit den Argumenten 1 und 2, also
+   $x=\vect{1}{2}$ liefert das Paar $(2.23606797, 1.10714871)$
+   zurueck, wobei das erste Element des Paares $r$ repraesentiert und
+   das Zweite $\varphi$.  Das Ergebnis ist bis zur vierten
+   Nachkommastelle identisch mit der analytischen Betrachtung.
+
+   Bei plotten der betraglichen Differenz der Approximation und des
+   Loesungsvektors ist zu beachten, dass die Methode =polar()=
+   unterschiedliche Winkel und Laengen errechnen kann, abhaengig
+   davon, was als ``Startwert'' angegeben wird.  In unserem Fall wurde
+   der Startvektor zu $(1,0)$ gewaehlt.  Der Plot ist in Abbildung
+   [[plot_newton]] zu sehen.
+
+   #+name: plot_newton
+   #+caption: Logarithmus des Fehlers
+   [[file:uebung2_3_newton.png]]
+
+** Kondition der Matrix
+   Die Kondition $\kappa(M, p)$ einer Matrix $M$ errechnet sich
+   folgendermassen
+
+   \begin{equation}
+     \kappa(M,p) = \norm{M}_p \norm{M^{-1}}_p
+   \end{equation}
+
+   Damit ergibt sich
+
+   \begin{align}
+     M &= \begin{pmatrix} \cos(\arctan(2)) & - \sqrt{5} \sin(\arctan(2)) \\
+                          \sin(\arctan(2)) & \sqrt{5} \cos(\arctan(2))
+          \end{pmatrix} \\
+       &= \begin{pmatrix} \frac{1}{\sqrt{5}} & -2 \\
+                          \frac{2}{\sqrt{5}} & 1
+          \end{pmatrix} \\
+     M^{-1} &=
+       \begin{pmatrix} \frac{1}{\sqrt{5}} & \frac{2}{\sqrt{5}} \\
+                       \frac{-2}{5} & \frac{1}{5}
+       \end{pmatrix} \\
+     \kappa(M,1) &= \left( 3 + \frac{3}{\sqrt{5}} \right)
+                    \left( \frac{3}{5} + \frac{3}{\sqrt{5}} \right) \approx 2.23 \\
+     \kappa(M,\infty) &= \frac{4}{\sqrt{5}} \approx 1.79
+   \end{align}
+
+   Wir waehlen nun eine Stoerung $\Delta x = \vect{0.001}{0.001}$.  Um
+   die gestoerte Loesung zu errechnen benutzen wir die
+   =polar(x,y)=-Funktion wie in Abbildung [[polar-stoerung]].
+
+   #+name: polar-stoerung
+   #+caption: Aufruf von polar mit gestoertem $x$
+   #+begin_src python
+     from uebung2_3 import polar
+     polar(1.001,2.001)
+   #+end_src
+
+   Wir erhalten dann die gestoerte Loesung $p + \Delta p =
+   \vect{2.237410}{1.106949}$, wobei hier auf die sechste Kommastelle
+   gerundet wurde.
+   
+   \begin{align}
+     
+   \end{align}
+
+
+   
+
+* Kontakt
+  - Mark Schatz :: =mark_schatz@web.de=
+  - Sebastian Jordan :: =jordanse@hu-berlin.de=
+

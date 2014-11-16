@@ -142,10 +142,10 @@ def matrixadd (a,b):
     (x1,x2) = dimensionen(a)
     (y1,y2) = dimensionen(b)
 
-    if x1 != x2:
+    if x1 != y1:
         raise Exception("Die Matrizen haben Unterschiedliche Hoehe")
 
-    if y1 != y2:
+    if x2 != y2:
         raise Exception("Die Matrizen haben Unterschiedliche Laengen")
 
     c = initMatrix(x1,x2)
