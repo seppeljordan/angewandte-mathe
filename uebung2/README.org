@@ -67,8 +67,8 @@
    \begin{align}
      \left\| \vect{0.2 \, (x_1 - y_1) - 0.7 \, (x_2 - y_2)}
                   {0.9 \, (x_1 - y_1)} \right\| & \leq
-     \left\| \vect{0.9 \, z_2}{0.9 \, z_1} & \\
-     & < \| z \|&
+     \left\| \vect{0.9 \, z_2}{0.9 \, z_1} \| & \\
+     & = 0.9 \| z \|&
    \end{align}
    
    Daraus folgt die Behauptung.
