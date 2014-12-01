@@ -1,0 +1,234 @@
+#+title: Loesung Aufgabe 3 - Angewandte Mathematik fuer Informatiker
+#+author: Mark Schatz - 545097, Sebastian Jordan - 538134
+#+email: mark_schatz@web.de, jordanse@hu-berlin.de
+#+latex_header: \usepackage{ngerman}
+
+* Integrationstechniken
+** Partielle Integration
+
+   Loesung durch einmaliges partielles Integrieren:
+   \begin{align*}
+     \int x \cdot \sin(x)\,dx &= - \cos(x) x + \int \cos(x) \, dx \\
+     &= \sin(x) - \cos(x) x + c
+   \end{align*}
+
+   Loesung durch zweimaliges partielles Integrieren und dann aufloesen
+   nach dem gesuchten Integral:
+   \begin{align*}
+     \int e^{ax}\cdot \sin(x)\,dx &= - \cos(x) e^{ax} + a \int \cos(x) e^{ax} \, dx \\
+     &= - \cos(x) e^{ax} + a \int \cos(x) e^{ax} \\
+     &= - \cos(x) e^{ax} + a \sin(x) e^{ax} - a^2 \int \sin(x) e^{ax} \, dx \\
+     &= \frac{ e^{ax} \left( a \sin(x) - \cos(x) \right)}{1 + a^2} + c
+   \end{align*}
+
+   Loesung durch partielles Integrieren, wobei $f'(x) = 1$:
+   \begin{align*}
+     \int \log x \, dx &= x \log x - \int x \frac{1}{x} \, dx \\
+     &= x\left(\log x - 1 \right) + c
+   \end{align*}
+
+** Integration durch Substitution
+
+   Sei $v = x^2 + 5$.
+   \begin{align*}
+     \frac{dv}{dx} &= 2x \Rightarrow \\
+     dx &= \frac{dv}{2x}
+   \end{align*}
+   \begin{align*}
+     \int 2x \left( x^2 + 5 \right)^3 \, dx &= \int v^3 \, dv \\
+     &= \frac{v^4}{4} + c \\
+     &= \frac{\left( x^2 + 5 \right)^3}{4} + c
+   \end{align*}
+
+   Sei $u = x^3 + 1$.
+   \begin{align*}
+     \frac{du}{dx} &= 3x^2 \Rightarrow \\
+     dx &= \frac{du}{3x^2}
+   \end{align*}
+   \begin{align*}
+     \int x^2 \sqrt{x^3 + 1} \, dx &= \frac{\int 3 x^2 \sqrt{x^3 + 1} \, dx}{3} \\
+     &= \frac{ \int \sqrt{u} \, du}{3} \\
+     &= \frac{2}{9} u^{\frac{3}{2}} + c \\
+     &= \frac{2}{9} \left( x^3 + 1 \right)^{\frac{2}{3}} + c
+   \end{align*}
+
+* Aufgabe 2
+
+** Radioaktiver Zerfall
+   Bei der ODE $N'(t) = -\alpha N(t)$ handelt es sich um eine ODE
+   erster Ordung und ersten Grades.  Das heisst, dass wir die Loesung
+   durch die aus der Vorlesung bekannte Formel
+   \begin{equation}
+     \frac{y'}{y} = - a(x) \Rightarrow \, y(x) = ce^{- A(x) }
+   \end{equation}
+   geloest werden kann.
+   \begin{align*}
+     \frac{N'}{N} &= - \alpha \Rightarrow \\
+     N(t) &= c \cdot e^{-\alpha t}
+   \end{align*}
+   Nun muessen wir mithilfe des Anfangswertes den Wert fuer $c$
+   berechnen.
+   \begin{align*}
+     N_0 = c e^0 \,\Rightarrow\, c = N_0 \,\Rightarrow\, N(t) = N_0 e^{-\alpha t}
+   \end{align*}
+
+** Homogenes separables System
+   Die zu betrachtende ODE ist separabel.
+   \begin{equation}
+     y'(x) = x^2\left(1 - sin^2\left(y(x)\right)\right) = x^2 \cdot \cos^2\left(y(x)\right)
+   \end{equation}
+
+   Wir wissen aus der Vorlesung, dass fuer separable homogene Probleme
+   folgende Loesungsformel gilt
+   \begin{align}
+     & y'(x) = f(x) \cdot g(y) &\Rightarrow \\
+     & y(x) = G^{-1}\left( F(x) + c \right),\quad G(y) = \int \frac{dy}{g(y)},\quad F(x) = \int f(x) \, dx
+   \end{align}
+
+   \begin{equation}
+     f(x) = x^2 \, \Rightarrow \, F(x) = \frac{x^3}{3}
+   \end{equation}
+
+   \begin{align*}
+     g(y) &= \cos^2(y) & \Rightarrow \\
+     G(y) &= \int \frac{dy}{cos^2(y)} \\
+          &= tan(y),\quad\text{wegen}\, \frac{\tan(x)}{dx} = \frac{1}{cos^2(x)} & \Rightarrow \\
+     G^{-1}(y) &= \arctan(y)
+   \end{align*}
+   
+   Daraus ergibt sich fuer die allgemeine Loesung fuer die ODE
+   \begin{equation}
+     y(x) = \arctan\left( \frac{x^3}{3} + c \right)
+   \end{equation}
+
+   Dadurch ergibt sich die Loesung fuer das Anfangswertproblem durch
+   Einsetzen.
+   \begin{align*}
+     \frac{\pi}{4} &= \arctan c & \Rightarrow \\
+     c &= 1 & \Rightarrow \\
+     y(x) &= \arctan \left( \frac{x^3}{3} + 1 \right)
+   \end{align*}
+
+** Inhomogene Separable ODE 1
+   Loesung des homogenen Problems nach der Loesungsformel aus der Vorlesung
+   \begin{align*}
+     -a(t) &= -\frac{R}{L} & \Rightarrow \\
+     A(t) &= \frac{R}{L} t \\
+     I_{\text{homo}}(t) &= e^{-\frac{R}{L} t}
+   \end{align*}
+
+   Die inhomogene Loesung ergibt sich dann zu
+   \begin{align*}
+     I(t) &= I_{\text{homo}}(t) \cdot \left( \int\limits_{t_0}^t \frac{U}{L} e^{\frac{Rt}{L}}\, dt + c \right) \\
+     &= e^{-\frac{R}{L} t} \left( \frac{U}{L} \left( \frac{L}{R}e^{\frac{Rt}{L}} - \frac{L}{R}e^{\frac{0 R}{L}} \right) + c \right) \\
+     &= e^{-\frac{R}{L} t} \left( \frac{U}{R} \left( e^{\frac{Rt}{L}} - 1 \right) + c \right) \\
+     &= ce^{-\frac{R}{L} t} + \frac{U}{R}\left( 1 - e^{-\frac{R}{L}t} \right) \\
+     &= ce^{-\frac{R}{L} t} + \frac{U}{R} - \frac{U}{R}e^{-\frac{R}{L}t} \\
+     &= \left(c - \frac{U}{R}\right) e^{-\frac{R}{L} t} + \frac{U}{R} \\
+     &= c_1 e^{-\frac{R}{L} t} + \frac{U}{R} & \Rightarrow \\
+     I_0 &= c_1 + \frac{U}{R} & \Rightarrow \\
+     I(t)&= e^{-\frac{R}{L} t} \left( \frac{U}{R} \left( e^{\frac{Rt}{L}} - 1 \right) + I_0 - \frac{U}{R} \right)
+   \end{align*}
+
+** Inhomogene Sparable ODE 2
+   Loesung des homogenen Problems nach der Loesungsformel aus der Vorlesung
+   \begin{align*}
+     -a(t) &= -\frac{R}{L} & \Rightarrow \\
+     A(t) &= \frac{R}{L} t \\
+     I_{\text{homo}}(t) &= e^{-\frac{R}{L} t}
+   \end{align*}
+   Ausserdem ist $f(x) = \frac{\sin x}{L}$
+
+   \begin{align*}
+     \int \frac{\sin x}{L} e^{\frac{R}{L}t}\, dt 
+     &= \frac{e^{\frac{R}{L}x} ( R \sin(x) - L \cos(x) )}{L^2 + R^2}
+   \end{align*}
+
+   Die inhomogene Loesung ergibt sich mithilfe der erkenntnisse aus
+   der vorigen Aufgabe dann zu
+   \begin{align*}
+     I(t) &= e^{-\frac{R}{L}t}\,\left( \frac{e^{\frac{R}{L}t} ( R \sin(t) - L \cos(t) )}{L^2 + R^2} -
+                                      \frac{L}{L^2 + R^2} + c \right) \\
+          &= e^{-\frac{R}{L}t}\,\left( \frac{e^{\frac{R}{L}t} ( R \sin(t) - L \cos(t) )}{L^2 + R^2} + c_1 \right) \\
+	  &= c_1e^{-\frac{R}{L}t} + \frac{R \sin(t) - L\cos(t)}{L^2 + R^2} & \Rightarrow \\
+     I_0 &= c_1e^{-\frac{R}{L}0} + \frac{R \sin(0) - L\cos(0)}{L^2 + R^2} \\
+         &= c_1 - \frac{L}{L^2 + R^2} & \Rightarrow \\
+     I(t) &= \left(I_0 + \frac{L}{L^2 + R^2} \right) e^{-\frac{R}{L}t} + \frac{R \sin(t) - L\cos(t)}{L^2 + R^2}
+   \end{align*}
+
+* Umwandlung in autonome Systeme
+
+** Aufgabe 3.3.1
+  Wir setzen $x_0 = t,\, x_1 = y,\, x_2 = y'$ wobei
+
+  $$
+  x = \begin{pmatrix}x_0 \\ x_1 \\ x_2 \end{pmatrix}
+  $$
+
+  Dann gilt
+  $$
+  x' = \begin{pmatrix} 1 \\ x_2 \\ \sin(x_1) - \cos(x_0) \end{pmatrix}
+  $$
+
+  mit den Startbedingungen $x_0(0) = 0$, $x_1(0) = y_0$, $x_2(0) =
+  v_0$ ist aequivalent zur ODE die gegeben ist.
+
+** Aufgabe 3.3.2
+   Wir setzen $x_0 = t,\, x_1 = y,\, x_2 = y',\, x_3 = y''$ wobei
+
+  $$
+  x = \begin{pmatrix}x_0 \\ x_1 \\ x_2 \\ x_3 \end{pmatrix}
+  $$
+
+  Dann gilt
+  $$
+  x' = \begin{pmatrix} 1 \\ x_2 \\ x_3 \\ 
+       e^{6x_0} - \sin(x_0)x_1 - 5x_2 - x_0^3x_3 \end{pmatrix}
+  $$
+
+  mit den Startbedingungen $x_0(0) = 0$, $x_1(0) = 3$, $x_2(0) =
+  2$, $x_3(0) = 1$ ist aequivalent zur ODE die gegeben ist.
+
+* Existenz von Loesungen
+
+** Charakteristisches Polynom
+
+   Das charakteristische Polynom zur ODE heisst
+
+   $$
+     P = \lambda^2 + \omega\lambda + 1
+   $$
+
+   Das heisst, dass die Loesung der Gleichung in Abhaengigkeit von
+   $\omega$
+   
+   $$
+     y(x) = y_0 \cdot \exp{\left(\left(-\frac{\omega}{2} \pm \sqrt{\frac{\omega^2}{4} - 1} \right)x\right)}
+   $$
+
+   Ausserdem gilt
+   \begin{equation}
+     \text{P hat nur reelle Nullstellen} \Leftrightarrow |\omega| \geq 2
+   \end{equation}
+
+** Eindeutigkeit der Loesung
+   ODE ist autonom $\Rightarrow$ Loesung ergibt sich zu $y(x) =
+   G^{-1}(x+c)$ mit $G(y) = \int \frac{dy}{g(x)}$ $\Rightarrow$ $y(x)
+   = \pm \frac{(x + c)^2}{4}$.  Jetzt muessen wir verschiedene Faelle
+   betrachten.  Der erste Fall $y<0$ ergibt sich aus der
+   Anfangsbedingung $y(0) = -1$.  Daraus ergibt sich $x \leq 2
+   \Rightarrow y(x) = - \frac{(x-2)^2}{4}$.  Der zweite Fall $y>0$
+   ergibt sich aus der Bedingung $y(5) = 1$ zu $x \geq 3 \Rightarrow
+   y(x) = \frac{(x-3)^2}{4}$.  Sonst gilt offensichtlicher Weise,
+   $y(x) = 0$.
+
+   $$
+   y(x) = \left\{ \begin{array}[c]{rl} - \frac{(x-2)^2}{4} &, \text{falls}\, x<2 \\
+                                \frac{(x-3)^2}{4} &, \text{falls}\, x>3 \\
+				0 &, \text{sonst}
+		  \end{array}\right.
+   $$
+
+   Fuer $y(0) = 1$ $\land$ $y(5) = -1$ gibt es keine Loesung, da $y' >
+   0$ ist, aber die diese Vorraussetzung verlangen wuerde, dass die
+   Funktion $y(x)$ zwischen $x=0$ und $x=5$ irgendwo fallen muesste.
